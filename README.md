@@ -66,7 +66,9 @@ we´ll talk much more about in the future.  --  Attention: 0.08
 Currently, there is no support to get the word-level attentions. However, feel free to create a PR to add those!
 
 # Examples
-In `/examples` you can find an example script how to apply this model on IMDB's review data. You will need to use `git-lfs` to be able to fetch the data and embeddings matrix from this repository.
+In `/examples` you can find an example script how to apply this model on IMDB's review data. For this two files need to be downloaded.
+The embeddings can be downloaded [here](https://nlp.stanford.edu/projects/glove/) and the data to IMDB review data can be found 
+[here](https://www.kaggle.com/c/word2vec-nlp-tutorial/data).
 
 # Transfer learning
 The network can simply be saved like any Keras model (e.g. using training callbacks or simply by calling `han.save(...)` on your model). To load a saved model you need to provide Keras with the custom model and layers provided in this repo.
