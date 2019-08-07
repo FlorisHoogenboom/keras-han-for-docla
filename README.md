@@ -9,7 +9,7 @@ The idea of this network is to summarize a whole text into a single vector by fi
 # How to use
 First clone this repository and run `pip install .` in the root of this repository. Next, you can import the model simply by running
 ```python
-from keras_han.models import HAN
+from keras_han.model import HAN
 ```
 and instantiate and use it by
 ```python
@@ -74,7 +74,7 @@ The embeddings can be downloaded [here](https://nlp.stanford.edu/projects/glove/
 The network can simply be saved like any Keras model (e.g. using training callbacks or simply by calling `han.save(...)` on your model). To load a saved model you need to provide Keras with the custom model and layers provided in this repo.
 
 ```python
-from keras_han.models import HAN
+from keras_han.model import HAN
 from keras_han.layers import AttentionLayer
 from keras.models import load_model
  
