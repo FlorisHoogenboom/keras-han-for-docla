@@ -70,7 +70,7 @@ In `/examples` you can find an example script how to apply this model on IMDB's 
 The embeddings can be downloaded [here](https://nlp.stanford.edu/projects/glove/) and the data to IMDB review data can be found 
 [here](https://www.kaggle.com/c/word2vec-nlp-tutorial/data).
 
-# Transfer learning
+# Loading a saved model
 The network can simply be saved like any Keras model (e.g. using training callbacks or simply by calling `han.save(...)` on your model). To load a saved model you need to provide Keras with the custom model and layers provided in this repo.
 
 ```python
@@ -83,8 +83,6 @@ han = load_model({file_path}, custom_objects={
     'AttentionLayer': AttentionLayer
 })
 ```
-
-If you want to reuse a pretrained version of this network on a different problem you need to make two small adjustsments. Firstly, you need to replace the embedding layer with your own embedding layer. This because the tokenization of your new problem might differ from the one used while pretraining the network. Secondly, you will need to substitute the last layer with your own. Please keep in mind that the dimension of the word-embedding you use should not change, this since the network internally contains some densely connected layers.
 
 # Example use cases
 The examples attached to this repo contain a simple application on a sentiment classification problem. Also, I've applied this network to classify parts of legal texts (my motivation for implementing this). I would love to hear your use cases.
