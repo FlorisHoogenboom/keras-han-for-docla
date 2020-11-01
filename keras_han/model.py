@@ -1,4 +1,3 @@
-import keras
 from keras.layers import (
     Dense, GRU, TimeDistributed, Input,
     Embedding, Bidirectional, Lambda
@@ -34,7 +33,6 @@ class HAN(Model):
         self.embedding_matrix = embedding_matrix
         self.word_encoding_dim = word_encoding_dim
         self.sentence_encoding_dim = sentence_encoding_dim
-
 
         in_tensor, out_tensor = self._build_network()
 
@@ -183,4 +181,3 @@ class HAN(Model):
         )(prev_tensor)
 
         return Model(self.input, dummy_layer).predict(X)
-
