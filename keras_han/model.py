@@ -184,3 +184,27 @@ class HAN(Model):
 
         return Model(self.input, dummy_layer).predict(X)
 
+    def predict_word_attention(self, X):
+        """
+        For a given set of texts predict the attention
+        weights for the words in the sentences
+        :param X: 3d-tensor, similar to the input for predict
+        :return: 3d array (num_obs, max_sentences, max_words) containing
+            the attention weights for each word in the sentences
+        """
+        # read the output of the word encoder
+        output_word_enc = K.constant(Model(self.input, self.get_layer('word_encoder').output).predict(X))
+
+        # read shared weights of the word attention layer
+        word_att_layer = self.get_layer('word_attention')
+        word_att_layer_weights = word_att_layer.get_weights()
+        word_att_W = K.constant(word_att_layer_weights[0])
+        word_att_u = K.constant(word_att_layer_weights[1])
+
+        # compute attention weights
+        u_tw = K.tanh(K.dot(output_word_enc, word_att_W))
+        tw_stimulus = K.dot(u_tw, word_att_u)
+        tw_stimulus = K.reshape(tw_stimulus, X.shape)
+        word_attention_weights = K.softmax(tw_stimulus)
+
+        return K.eval(word_attention_weights)

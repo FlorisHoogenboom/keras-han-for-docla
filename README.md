@@ -4,7 +4,7 @@
 This repository contains a Keras implementation of the network presented in [Hierarchical Attention Networks for Document Classification](http://www.cs.cmu.edu/~./hovy/papers/16HLT-hierarchical-attention-networks.pdf) by Zichao Yang, Diyi Yang, Chris Dyer, Xiaodong He, Alex Smola, and Eduard Hovy (2016). The implementation in this repository should be fully backend agnostic.
 
 # Short description of the network
-The idea of this network is to summarize a whole text into a single vector by first summarizing each sentence into a vector and subsequently summarizing these representations of sentences. For a technical description of the network we refer to the aforementioned paper. 
+The idea of this network is to summarize a whole text into a single vector by first summarizing each sentence into a vector and subsequently summarizing these representations of sentences. For a technical description of the network we refer to the aforementioned paper.
 
 # How to use
 First clone this repository and run `pip install .` in the root of this repository. Next, you can import the model simply by running
@@ -14,7 +14,7 @@ from keras_han.model import HAN
 and instantiate and use it by
 ```python
 han = HAN(
-    max_words=100, max_sentences=15, output_size=2, 
+    max_words=100, max_sentences=15, output_size=2,
     embedding_matrix={your embedding matrix}
 )
 
@@ -63,11 +63,15 @@ the ladybug´s face it´s a clear reference (or tribute) to peter lorre.  --  At
 this movie is a masterpiece.  --  Attention: 0.31
 we´ll talk much more about in the future.  --  Attention: 0.08
 ```
-Currently, there is no support to get the word-level attentions. However, feel free to create a PR to add those!
+
+To generate word attention weights, simply call `han.predict_word_attention(X)` with your input data. This returns a 3d-numpy array of dimensions `(num_samples, max_sentences, max_words)`. To give you an idea, the example below shows the word attention weights within brackets for a short IMDB review.
+```
+this (0.17) movie (0.2) is (0.08) full (0.32) of (0.02) references (0.21).
+```
 
 # Examples
 In `/examples` you can find an example script how to apply this model on IMDB's review data. For this two files need to be downloaded.
-The embeddings can be downloaded [here](https://nlp.stanford.edu/projects/glove/) and the data to IMDB review data can be found 
+The embeddings can be downloaded [here](https://nlp.stanford.edu/projects/glove/) and the data to IMDB review data can be found
 [here](https://www.kaggle.com/c/word2vec-nlp-tutorial/data).
 
 # Loading a saved model
@@ -77,7 +81,7 @@ The network can simply be saved like any Keras model (e.g. using training callba
 from keras_han.model import HAN
 from keras_han.layers import AttentionLayer
 from keras.models import load_model
- 
+
 han = load_model({file_path}, custom_objects={
     'HAN': HAN,
     'AttentionLayer': AttentionLayer
