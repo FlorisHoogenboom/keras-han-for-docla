@@ -20,7 +20,7 @@ setup(
     author_email='floris@digitaldreamworks.nl',
     description='An inplementation of Hierarchical Attention Networks in Keras.',
     install_requires=[
-        'keras>=2.1.5',
+        'keras>=2.4.0',
         'tensorflow>=2.2.0'
     ],
     test_requires=TEST_DEPENDENCIES,
