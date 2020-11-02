@@ -103,7 +103,7 @@ for i, review in enumerate(reviews):
         tokenized_sentences = tokenized_sentences[0:MAX_SENT]
     else:
         tokenized_sentences = np.pad(
-            tokenized_sentences, ((0,pad_size),(0,0)),
+            tokenized_sentences, ((0, pad_size), (0, 0)),
             mode='constant', constant_values=0
         )
 

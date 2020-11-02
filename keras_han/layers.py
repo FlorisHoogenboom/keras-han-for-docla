@@ -1,10 +1,6 @@
-"""
-File containing custom Keras layers that use the
-attention mechanism.
-"""
-
 import keras
 from keras import backend as K
+
 
 class AttentionLayer(keras.layers.Layer):
     def __init__(self, context_vector_length=100, **kwargs):
