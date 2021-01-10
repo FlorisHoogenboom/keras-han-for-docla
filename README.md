@@ -88,4 +88,4 @@ han = load_model({file_path}, custom_objects={
 The examples attached to this repo contain a simple application on a sentiment classification problem. Also, I've applied this network to classify parts of legal texts (my motivation for implementing this). I would love to hear your use cases.
 
 # Tests
-To run tests make sure you first run `pip install .[tests]` in the root of this repository.. You can kick-off the test suite by just running `pytest`
+To run tests make sure you first run `pip install .[tests]` in the root of this repository. You can kick-off the test suite by just running `pytest`.
